@@ -31,7 +31,7 @@ let currentLanguage = localStorage.getItem('language') || 'en';
 let sessionId = localStorage.getItem('sessionId') || null;
 let userId = localStorage.getItem('userId') || null;
 
-// ===== QUIZ (для tasks.html) =====
+// ===== QUIZ =====
 const quizQuestions = [
     { question: "Скільки в людини хромосом?", options: ["23", "46", "44", "48"], answer: "46" },
     { question: "Що таке бісексуальність?", options: ["Любов до всіх людей", "Прихильність до однієї статі", "Прихильність до обох статей", "Тільки дружба"], answer: "Прихильність до обох статей" },
@@ -43,11 +43,34 @@ const quizQuestions = [
     { question: "Яка формула води?", options: ["H2O", "CO2", "O2", "NaCl"], answer: "H2O" }
 ];
 
+function loadQuiz() {
+    const grid = document.getElementById('tasksGrid');
+    if (!grid) return;
+    grid.innerHTML += quizQuestions.map((q, i) => `
+        <div class="task-card">
+            <h3>${q.question}</h3>
+            ${q.options.map(opt => `<button class="btn btn-large quiz-option" data-q-index="${i}" data-option="${opt}">${opt}</button>`).join('')}
+            <p id="result-${i}" style="margin-top:5px;"></p>
+        </div>
+    `).join('');
+}
+
+function checkAnswer(qIndex, selected) {
+    const resultEl = document.getElementById(`result-${qIndex}`);
+    if (quizQuestions[qIndex].answer === selected) {
+        resultEl.textContent = "✅ Правильно!";
+        resultEl.style.color = "green";
+    } else {
+        resultEl.textContent = "❌ Неправильно!";
+        resultEl.style.color = "red";
+    }
+}
+
 // ===== ІНІЦІАЛІЗАЦІЯ =====
 document.addEventListener('DOMContentLoaded', () => {
     initLanguageSwitcher();
     updateAllText();
-    setupButtons();
+    setupStaticButtons();
     checkPageAndLoad();
 });
 
@@ -60,13 +83,10 @@ function initLanguageSwitcher() {
             currentLanguage = e.target.value;
             localStorage.setItem('language', currentLanguage);
             updateAllText();
-            // Перезавантажити динамічні сторінки
-            checkPageAndLoad();
         });
     }
 }
 
-// ===== ОНОВИТИ ВСІ ТЕКСТИ =====
 function updateAllText() {
     document.querySelectorAll('[data-en][data-uk][data-ru]').forEach(el => {
         const text = el.getAttribute(`data-${currentLanguage}`);
@@ -74,8 +94,8 @@ function updateAllText() {
     });
 }
 
-// ===== НАЛАШТУВАННЯ КНОПОК =====
-function setupButtons() {
+// ===== СТАТИЧНІ КНОПКИ =====
+function setupStaticButtons() {
     const startBtn = document.getElementById('startBtn');
     if (startBtn) startBtn.addEventListener('click', () => {
         window.location.href = sessionId ? '/dashboard.html' : '/auth.html';
@@ -101,30 +121,38 @@ function setupButtons() {
     const earnMoreBtn = document.getElementById('earnMoreBtn');
     if (earnMoreBtn) earnMoreBtn.addEventListener('click', () => window.location.href = '/tasks.html');
 
-    // Делегування для динамічних кнопок
+    // Динамічні кнопки (квест, квіз, карусель)
     document.body.addEventListener('click', e => {
         if (e.target.matches('.task-card button[data-task-id]')) {
             const taskId = e.target.dataset.taskId;
             if (taskId) completeTask(taskId);
         }
-        if (e.target.matches('.carousel-nav[data-direction]')) {
-            const direction = parseInt(e.target.dataset.direction);
-            if (!isNaN(direction)) moveCarousel(direction);
+
+        if (e.target.matches('.quiz-option')) {
+            const qIndex = parseInt(e.target.dataset.qIndex);
+            const selected = e.target.dataset.option;
+            checkAnswer(qIndex, selected);
         }
+
+        if (e.target.matches('.carousel-prev')) moveCarousel(-1);
+        if (e.target.matches('.carousel-next')) moveCarousel(1);
     });
 }
 
 // ===== ВИБІР СТОРІНКИ =====
 function checkPageAndLoad() {
     const bodyHTML = document.body.innerHTML.toLowerCase();
+
     if (bodyHTML.includes('dashboard')) loadDashboard();
-    else if (bodyHTML.includes('tasks')) loadTasks().then(loadQuiz);
+    else if (bodyHTML.includes('tasks')) {
+        loadTasks().then(loadQuiz);
+    }
     else if (bodyHTML.includes('referrals')) loadReferrals();
     else if (bodyHTML.includes('promotions')) initPromotions();
     else if (bodyHTML.includes('auth')) initAuth();
 }
 
-// ===== АУТЕНТИФІКАЦІЯ =====
+// ===== AUTH =====
 function initAuth() {
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', e => {
@@ -189,13 +217,11 @@ async function loadDashboard() {
             document.getElementById('activeUserCount').textContent = `${data.activeUsersCount} / ${data.maxUsers}`;
             if (data.activeUsersCount >= data.maxUsers) document.getElementById('limitWarning').style.display = 'block';
             const historyEl = document.getElementById('taskHistoryList');
-            if(historyEl) {
-                historyEl.innerHTML = data.tasks.map(t => `
-                    <div class="history-item">
-                        <div><strong>${t.title}</strong><br><small>${new Date(t.completedAt).toLocaleString()}</small></div>
-                        <div class="history-reward">+$${t.reward.toFixed(2)}</div>
-                    </div>`).join('') || '<p>No tasks completed yet</p>';
-            }
+            historyEl.innerHTML = data.tasks.map(t => `
+                <div class="history-item">
+                    <div><strong>${t.title}</strong><br><small>${new Date(t.completedAt).toLocaleString()}</small></div>
+                    <div class="history-reward">+$${t.reward.toFixed(2)}</div>
+                </div>`).join('') || '<p>No tasks completed yet</p>';
         }
     } catch (err) { console.error(err); }
 }
@@ -208,7 +234,7 @@ async function loadTasks() {
         const data = await res.json();
         if (data.success) {
             const grid = document.getElementById('tasksGrid');
-            if(grid) grid.innerHTML = data.tasks.map(task => `
+            grid.innerHTML = data.tasks.map(task => `
                 <div class="task-card">
                     <div class="task-badge">⭐ Task</div>
                     <h3>${task[`title_${currentLanguage}`] || task.title_en}</h3>
@@ -236,30 +262,6 @@ async function completeTask(taskId) {
     } catch (err) { alert('Error completing task: ' + err.message); }
 }
 
-// ===== QUIZ =====
-function loadQuiz() {
-    const grid = document.getElementById('tasksGrid');
-    if (!grid) return;
-    grid.innerHTML += quizQuestions.map((q, i) => `
-        <div class="task-card">
-            <h3>${q.question}</h3>
-            ${q.options.map(opt => `<button class="btn btn-large" onclick="checkAnswer(${i}, '${opt}')">${opt}</button>`).join('')}
-            <p id="result-${i}" style="margin-top:5px;"></p>
-        </div>
-    `).join('');
-}
-
-function checkAnswer(qIndex, selected) {
-    const resultEl = document.getElementById(`result-${qIndex}`);
-    if (quizQuestions[qIndex].answer === selected) {
-        resultEl.textContent = "✅ Правильно!";
-        resultEl.style.color = "green";
-    } else {
-        resultEl.textContent = "❌ Неправильно!";
-        resultEl.style.color = "red";
-    }
-}
-
 // ===== REFERRALS =====
 async function loadReferrals() {
     if (!sessionId) return window.location.href = '/auth.html';
@@ -267,12 +269,9 @@ async function loadReferrals() {
         const res = await fetch(`/api/referral/${sessionId}`);
         const data = await res.json();
         if (data.success) {
-            const refLink = document.getElementById('referralLink');
-            if(refLink) refLink.value = data.referralLink;
-            const referredCount = document.getElementById('referredCount');
-            if(referredCount) referredCount.textContent = data.referredUsersCount;
-            const bonusAmount = document.getElementById('bonusAmount');
-            if(bonusAmount) bonusAmount.textContent = `$${data.bonusEarned.toFixed(2)}`;
+            document.getElementById('referralLink').value = data.referralLink;
+            document.getElementById('referredCount').textContent = data.referredUsersCount;
+            document.getElementById('bonusAmount').textContent = `$${data.bonusEarned.toFixed(2)}`;
         }
     } catch (err) { console.error(err); }
 }
