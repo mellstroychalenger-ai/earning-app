@@ -62,17 +62,21 @@ function updateAllText() {
 
 // ===== НАЛАШТУВАННЯ КНОПОК =====
 function setupButtons() {
+    // Start Earning
     const startBtn = document.getElementById('startBtn');
     if (startBtn) startBtn.addEventListener('click', () => {
         window.location.href = sessionId ? '/dashboard.html' : '/auth.html';
     });
 
+    // Login
     const loginBtn = document.getElementById('loginBtn');
     if (loginBtn) loginBtn.addEventListener('click', () => window.location.href = '/auth.html');
 
+    // Logout
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) logoutBtn.addEventListener('click', logout);
 
+    // Copy Referral
     const copyBtn = document.getElementById('copyBtn');
     if (copyBtn) {
         copyBtn.addEventListener('click', () => {
@@ -89,16 +93,20 @@ function setupButtons() {
         });
     }
 
+    // Earn More (Dashboard)
     const earnMoreBtn = document.getElementById('earnMoreBtn');
     if (earnMoreBtn) earnMoreBtn.addEventListener('click', () => window.location.href = '/tasks.html');
 
+    // Делегування для динамічних кнопок
     document.body.addEventListener('click', (e) => {
-        if (e.target.matches('.task-card button[data-task-id]')) {
-            const taskId = e.target.dataset.taskId;
-            if (taskId) completeTask(taskId);
-        }
-        if (e.target.matches('.carousel-nav[data-direction]')) {
-            const direction = parseInt(e.target.dataset.direction);
+        // Complete Task
+        const taskBtn = e.target.closest('.task-card button[data-task-id]');
+        if (taskBtn) completeTask(taskBtn.dataset.taskId);
+
+        // Carousel navigation
+        const navBtn = e.target.closest('.carousel-nav[data-direction]');
+        if (navBtn) {
+            const direction = parseInt(navBtn.dataset.direction);
             if (!isNaN(direction)) moveCarousel(direction);
         }
     });
@@ -107,6 +115,7 @@ function setupButtons() {
 // ===== ВИБІР СТОРІНКИ =====
 function checkPageAndLoad() {
     const bodyHTML = document.body.innerHTML.toLowerCase();
+
     if (bodyHTML.includes('dashboard')) loadDashboard();
     else if (bodyHTML.includes('tasks')) loadTasks();
     else if (bodyHTML.includes('referrals')) loadReferrals();
