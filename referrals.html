@@ -1,0 +1,82 @@
+<!-- referrals.html - РЕФЕРАЛІ ТА БОНУСИ
+     Показує: реферальне посилання, копіювання, бонуси, кількість запрошених користувачів -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referrals & Bonuses - Earning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- НАВІГАЦІЙНА ПАНЕЛЬ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/dashboard.html" class="logo">💰 Earning App</a>
+            <div class="nav-menu">
+                <a href="/tasks.html" class="nav-link" data-en="Tasks" data-uk="Завдання" data-ru="Задачи">Tasks</a>
+                <a href="/referrals.html" class="nav-link active" data-en="Referrals" data-uk="Рефералі" data-ru="Рефералы">Referrals</a>
+                <a href="/promotions.html" class="nav-link" data-en="Offers" data-uk="Пропозиції" data-ru="Предложения">Offers</a>
+            </div>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+                <button id="logoutBtn" class="btn btn-secondary" data-en="Logout" data-uk="Вихід" data-ru="Выход">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
+    <main class="referrals-container">
+        <h1 id="referralTitle" data-en="Earn with Referrals" data-uk="Заробляйте з рефералами" data-ru="Зарабатывайте с рефералами">Earn with Referrals</h1>
+
+        <!-- РЕФЕРАЛЬНЕ ПОСИЛАННЯ -->
+        <div class="referral-card">
+            <h2 id="refLinkTitle" data-en="Your Referral Link" data-uk="Ваше реферальне посилання" data-ru="Ваша реферальная ссылка">Your Referral Link</h2>
+            <div class="referral-link-box">
+                <input type="text" id="referralLink" readonly>
+                <button id="copyBtn" class="btn btn-small" data-en="Copy" data-uk="Копіювати" data-ru="Скопировать">Copy</button>
+            </div>
+            <p id="copyMsg" class="success-message" style="display: none;">✅ Copied to clipboard!</p>
+        </div>
+
+        <!-- СТАТИСТИКА БОНУСІВ -->
+        <div class="bonus-stats">
+            <div class="stat-card">
+                <h3 id="referredLabel" data-en="Referred Users" data-uk="Запрошені користувачі" data-ru="Приглашенные пользователи">Referred Users</h3>
+                <p id="referredCount">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="bonusLabel" data-en="Bonus Earned" data-uk="Заробив бонусів" data-ru="Заработанный бонус">Bonus Earned</h3>
+                <p id="bonusAmount">$0.00</p>
+            </div>
+
+            <div class="stat-card">
+                <h3 id="perRefLabel" data-en="Per Referral" data-uk="За одного реферала" data-ru="За одного реферала">Per Referral</h3>
+                <p>$0.50</p>
+            </div>
+        </div>
+
+        <!-- МОТИВАЦІЙНІ РЕКОМЕНДАЦІЇ -->
+        <div class="motivation-box">
+            <h3 id="motTitle" data-en="Grow Your Earnings!" data-uk="Збільшуйте свої прибутки!" data-ru="Увеличивайте свои прибыли!">Grow Your Earnings!</h3>
+            <ul>
+                <li id="mot1" data-en="Share with friends and family" data-uk="Поділіться з друзями та сім'єю" data-ru="Поделитесь с друзьями и семьей">Share with friends and family</li>
+                <li id="mot2" data-en="Each referral earns you $0.50" data-uk="Кожен реферал приносить вам $0.50" data-ru="Каждый реферал приносит вам $0.50">Each referral earns you $0.50</li>
+                <li id="mot3" data-en="Unlimited referral potential" data-uk="Невеликий потенціал рефералів" data-ru="Неограниченный потенциал рефералов">Unlimited referral potential</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Earning App. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
