@@ -65,8 +65,7 @@ function setupButtons() {
     // Start Earning
     const startBtn = document.getElementById('startBtn');
     if (startBtn) startBtn.addEventListener('click', () => {
-        if (sessionId) window.location.href = '/dashboard.html';
-        else window.location.href = '/auth.html';
+        window.location.href = sessionId ? '/dashboard.html' : '/auth.html';
     });
 
     // Login
@@ -83,13 +82,13 @@ function setupButtons() {
         copyBtn.addEventListener('click', () => {
             const linkInput = document.getElementById('referralLink');
             if (linkInput) {
-                linkInput.select();
-                document.execCommand('copy');
-                const msg = document.getElementById('copyMsg');
-                if (msg) {
-                    msg.style.display = 'block';
-                    setTimeout(() => { msg.style.display = 'none'; }, 2000);
-                }
+                navigator.clipboard.writeText(linkInput.value).then(() => {
+                    const msg = document.getElementById('copyMsg');
+                    if (msg) {
+                        msg.style.display = 'block';
+                        setTimeout(() => msg.style.display = 'none', 2000);
+                    }
+                });
             }
         });
     }
@@ -97,6 +96,20 @@ function setupButtons() {
     // Earn More (Dashboard)
     const earnMoreBtn = document.getElementById('earnMoreBtn');
     if (earnMoreBtn) earnMoreBtn.addEventListener('click', () => window.location.href = '/tasks.html');
+
+    // Делегування для динамічних кнопок
+    document.body.addEventListener('click', (e) => {
+        // Complete Task
+        if (e.target.matches('.task-card button[data-task-id]')) {
+            const taskId = e.target.dataset.taskId;
+            if (taskId) completeTask(taskId);
+        }
+        // Carousel navigation
+        if (e.target.matches('.carousel-nav[data-direction]')) {
+            const direction = parseInt(e.target.dataset.direction);
+            if (!isNaN(direction)) moveCarousel(direction);
+        }
+    });
 }
 
 // ===== ВИБІР СТОРІНКИ =====
@@ -112,7 +125,6 @@ function checkPageAndLoad() {
 
 // ===== АУТЕНТИФІКАЦІЯ =====
 function initAuth() {
-    // Вкладки
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const tab = e.target.dataset.tab;
@@ -124,7 +136,6 @@ function initAuth() {
         });
     });
 
-    // Login Form
     const loginForm = document.getElementById('loginForm');
     if (loginForm) loginForm.addEventListener('submit', async e => {
         e.preventDefault();
@@ -154,7 +165,6 @@ function initAuth() {
         }
     });
 
-    // Register Form
     const registerForm = document.getElementById('registerForm');
     if (registerForm) registerForm.addEventListener('submit', async e => {
         e.preventDefault();
@@ -229,7 +239,7 @@ async function loadTasks() {
                             <p><strong>💰 Reward:</strong> <span class="task-reward">$${task.reward.toFixed(2)}</span></p>
                             <p><strong>⏱️ Time:</strong> ${task.time}</p>
                         </div>
-                        <button class="btn btn-large" onclick="completeTask(${task.id})">Complete</button>
+                        <button class="btn btn-large" data-task-id="${task.id}">Complete</button>
                     </div>
                 `).join('');
             }
