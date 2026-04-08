@@ -1,0 +1,72 @@
+<!-- dashboard.html - ПАНЕЛЬ КОРИСТУВАЧА
+     Показує: баланс, історію завдань, інформацію про користувача, ліміт 5 користувачів -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Earning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- НАВІГАЦІЙНА ПАНЕЛЬ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/dashboard.html" class="logo">💰 Earning App</a>
+            <div class="nav-menu">
+                <a href="/tasks.html" class="nav-link" data-en="Tasks" data-uk="Завдання" data-ru="Задачи">Tasks</a>
+                <a href="/referrals.html" class="nav-link" data-en="Referrals" data-uk="Рефералі" data-ru="Рефералы">Referrals</a>
+                <a href="/promotions.html" class="nav-link" data-en="Offers" data-uk="Пропозиції" data-ru="Предложения">Offers</a>
+            </div>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+                <button id="logoutBtn" class="btn btn-secondary" data-en="Logout" data-uk="Вихід" data-ru="Выход">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
+    <main class="dashboard-container">
+        <!-- БАЛАНС -->
+        <div class="balance-card">
+            <div class="balance-info">
+                <p id="balanceLabel" data-en="Your Balance" data-uk="Ваш баланс" data-ru="Ваш баланс">Your Balance</p>
+                <h2 id="balanceAmount">$0.00</h2>
+            </div>
+            <button class="btn btn-large" id="earnMoreBtn" data-en="Earn More" data-uk="Заробити більше" data-ru="Заработать больше">Earn More</button>
+        </div>
+
+        <!-- ПОПЕРЕДЖЕННЯ ПРО ЛІМІТ КОРИСТУВАЧІВ -->
+        <div id="limitWarning" class="warning-box" style="display: none;">
+            <p id="limitMsg" data-en="Server is at full capacity! 5 users are active. Please try again later." data-uk="Сервер на повну потужність! 5 користувачів активні. Спробуйте пізніше." data-ru="Сервер на полную мощность! 5 пользователей активны. Попробуйте позже.">
+                Server is at full capacity! 5 users are active. Please try again later.
+            </p>
+        </div>
+
+        <!-- АКТИВНІ КОРИСТУВАЧІ -->
+        <div class="status-card">
+            <h3 id="activeUsersLabel" data-en="Active Users" data-uk="Активні користувачі" data-ru="Активные пользователи">Active Users</h3>
+            <p id="activeUserCount">0 / 5</p>
+        </div>
+
+        <!-- ІСТОРІЯ ЗАВДАНЬ -->
+        <div class="tasks-history">
+            <h3 id="historyTitle" data-en="Task History" data-uk="Історія завдань" data-ru="История задач">Task History</h3>
+            <div id="taskHistoryList" class="history-list">
+                <p id="noTasksMsg" data-en="No tasks completed yet" data-uk="Завдань ще не виконано" data-ru="Задачи еще не выполнены">No tasks completed yet</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Earning App. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
