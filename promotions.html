@@ -1,0 +1,99 @@
+<!-- promotions.html - АКЦІЇ ТА СПЕЦІАЛЬНІ ПРОПОЗИЦІЇ
+     Показує: карусель промо-банерів, спеціальні пропозиції, кнопки "Приєднатися" -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions - Earning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- НАВІГАЦІЙНА ПАНЕЛЬ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/dashboard.html" class="logo">💰 Earning App</a>
+            <div class="nav-menu">
+                <a href="/tasks.html" class="nav-link" data-en="Tasks" data-uk="Завдання" data-ru="Задачи">Tasks</a>
+                <a href="/referrals.html" class="nav-link" data-en="Referrals" data-uk="Рефералі" data-ru="Рефералы">Referrals</a>
+                <a href="/promotions.html" class="nav-link active" data-en="Offers" data-uk="Пропозиції" data-ru="Предложения">Offers</a>
+            </div>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+                <button id="logoutBtn" class="btn btn-secondary" data-en="Logout" data-uk="Вихід" data-ru="Выход">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
+    <main class="promotions-container">
+        <h1 id="promoTitle" data-en="Special Promotions" data-uk="Спеціальні пропозиції" data-ru="Специальные предложения">Special Promotions</h1>
+
+        <!-- КАРУСЕЛЬ ПРОМО-БАНЕРІВ -->
+        <div class="carousel">
+            <div class="carousel-item active">
+                <div class="promo-banner banner-blue">
+                    <h2 id="promo1Title" data-en="Double Rewards Weekend!" data-uk="Вихідні з подвійними винагородами!" data-ru="Выходные с двойными наградами!">Double Rewards Weekend!</h2>
+                    <p id="promo1Desc" data-en="Get 2x rewards on all tasks" data-uk="Отримуйте 2x винагороди на всі завдання" data-ru="Получите 2x награды на все задачи">Get 2x rewards on all tasks</p>
+                    <button class="btn btn-light" data-en="Join Now" data-uk="Приєднатися" data-ru="Присоединиться">Join Now</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="promo-banner banner-green">
+                    <h2 id="promo2Title" data-en="New User Bonus" data-uk="Бонус для нових користувачів" data-ru="Бонус для новых пользователей">New User Bonus</h2>
+                    <p id="promo2Desc" data-en="Get $5 welcome bonus" data-uk="Отримайте 5 доларів приветственного бонусу" data-ru="Получите приветственный бонус в размере 5 долларов">Get $5 welcome bonus</p>
+                    <button class="btn btn-light" data-en="Claim Now" data-uk="Отримати" data-ru="Получить">Claim Now</button>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="promo-banner banner-orange">
+                    <h2 id="promo3Title" data-en="Referral Boost" data-uk="Посилення рефералів" data-ru="Усиление рефералов">Referral Boost</h2>
+                    <p id="promo3Desc" data-en="Earn extra from referrals" data-uk="Заробляйте більше від рефералів" data-ru="Зарабатывайте больше от рефералов">Earn extra from referrals</p>
+                    <button class="btn btn-light" data-en="Learn More" data-uk="Дізнатися більше" data-ru="Узнать больше">Learn More</button>
+                </div>
+            </div>
+
+            <!-- НАВІГАЦІЯ КАРУСЕЛЬ -->
+            <button class="carousel-prev" onclick="moveCarousel(-1)">❮</button>
+            <button class="carousel-next" onclick="moveCarousel(1)">❯</button>
+        </div>
+
+        <!-- КАРТОК ПРОПОЗИЦІЙ -->
+        <div class="offers-grid">
+            <div class="offer-card">
+                <div class="offer-badge" data-en="Limited Time" data-uk="Обмежений час" data-ru="Ограниченное время">Limited Time</div>
+                <h3 id="offer1" data-en="Survey Contest" data-uk="Конкурс опитувань" data-ru="Конкурс опросов">Survey Contest</h3>
+                <p id="offer1Desc" data-en="Complete 10 surveys and win $10!" data-uk="Завершіть 10 опитувань і виграйте 10 доларів!" data-ru="Завершите 10 опросов и выиграйте 10 долларов!">Complete 10 surveys and win $10!</p>
+                <button class="btn btn-secondary" data-en="Participate" data-uk="Брати участь" data-ru="Участвовать">Participate</button>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-badge" data-en="Exclusive" data-uk="Виключно" data-ru="Исключительно">Exclusive</div>
+                <h3 id="offer2" data-en="VIP Members" data-uk="VIP-члени" data-ru="VIP-члены">VIP Members</h3>
+                <p id="offer2Desc" data-en="Get premium tasks and rewards" data-uk="Отримуйте преміум-завдання та винагороди" data-ru="Получайте премиальные задачи и награды">Get premium tasks and rewards</p>
+                <button class="btn btn-secondary" data-en="Upgrade" data-uk="Оновити" data-ru="Обновить">Upgrade</button>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-badge" data-en="Hot Deal" data-uk="Гарячий вибір" data-ru="Горячий выбор">Hot Deal</div>
+                <h3 id="offer3" data-en="Bonus Points" data-uk="Бонусні бали" data-ru="Бонусные баллы">Bonus Points</h3>
+                <p id="offer3Desc" data-en="Exchange points for cash" data-uk="Обміняйте бали на готівку" data-ru="Обменяйте баллы на деньги">Exchange points for cash</p>
+                <button class="btn btn-secondary" data-en="Exchange" data-uk="Обміняти" data-ru="Обменять">Exchange</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Earning App. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
