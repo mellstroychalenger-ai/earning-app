@@ -1,3 +1,5 @@
+// ===== app.js =====
+
 // ===== ПЕРЕКЛАДИ (Мультимовна підтримка) =====
 const translations = {
     uk: {
@@ -247,3 +249,4 @@ async function logout() {
     await fetch('/api/logout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId }) });
     localStorage.removeItem('sessionId'); localStorage.removeItem('userId'); sessionId = null; userId = null;
     window.location.href = '/';
+}
