@@ -1,0 +1,50 @@
+<!-- tasks.html - СТОРІНКА ЗАВДАНЬ
+     Показує: список завдань, кнопки завершення, винагороди, час виконання -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks - Earning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- НАВІГАЦІЙНА ПАНЕЛЬ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/dashboard.html" class="logo">💰 Earning App</a>
+            <div class="nav-menu">
+                <a href="/tasks.html" class="nav-link active" data-en="Tasks" data-uk="Завдання" data-ru="Задачи">Tasks</a>
+                <a href="/referrals.html" class="nav-link" data-en="Referrals" data-uk="Рефералі" data-ru="Рефералы">Referrals</a>
+                <a href="/promotions.html" class="nav-link" data-en="Offers" data-uk="Пропозиції" data-ru="Предложения">Offers</a>
+            </div>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+                <button id="logoutBtn" class="btn btn-secondary" data-en="Logout" data-uk="Вихід" data-ru="Выход">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
+    <main class="tasks-container">
+        <h1 id="tasksTitle" data-en="Available Tasks" data-uk="Доступні завдання" data-ru="Доступные задачи">Available Tasks</h1>
+        <p id="tasksSubtitle" data-en="Complete tasks and earn instant rewards!" data-uk="��иконуйте завдання і отримуйте миттєві винагороди!" data-ru="Выполняйте задачи и получайте мгновенные награды!">Complete tasks and earn instant rewards!</p>
+
+        <!-- КАРТКИ ЗАВДАНЬ -->
+        <div class="tasks-grid" id="tasksGrid">
+            <!-- Завдання будуть завантажені тут JavaScript -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Earning App. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
