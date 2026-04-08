@@ -1,0 +1,82 @@
+<!-- index.html - ГОЛОВНА СТОРІНКА ПЛАТФОРМИ
+     Показує: мотивуючий заголовок, кнопку "Почати заробляти", перемикач мови -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Money Online - Earning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- НАВІГАЦІЙНА ПАНЕЛЬ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">💰 Earning App</div>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+                <button id="loginBtn" class="btn btn-primary" data-en="Login" data-uk="Вхід" data-ru="Вход">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ГОЛОВНА СТОРІНКА -->
+    <main class="hero">
+        <div class="hero-content">
+            <h1 id="headline" data-en="Earn money by completing simple online tasks!" data-uk="Заробляйте гроші, виконуючи прості онлайн-завдання!" data-ru="Зарабатывайте деньги, выполняя простые онлайн-задания!">
+                Earn money by completing simple online tasks!
+            </h1>
+            <p id="subheadline" data-en="Click buttons, rate products, write reviews, and earn bonuses!" data-uk="Натискайте кнопки, оцінюйте продукти, пишіть відгуки і заробляйте бонуси!" data-ru="Нажимайте кнопки, оценивайте продукты, пишите отзывы и зарабатывайте бонусы!">
+                Click buttons, rate products, write reviews, and earn bonuses!
+            </p>
+
+            <button id="startBtn" class="btn btn-large" data-en="Start Earning" data-uk="Почати заробляти" data-ru="Начать зарабатывать">
+                Start Earning
+            </button>
+        </div>
+    </main>
+
+    <!-- СЕКЦІЯ ОСОБЛИВОСТЕЙ -->
+    <section class="features">
+        <h2 id="featuresTitle" data-en="Why Choose Us?" data-uk="Чому вибирати нас?" data-ru="Почему выбирать нас?">Why Choose Us?</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 id="feat1" data-en="Quick Tasks" data-uk="Швидкі завдання" data-ru="Быстрые задачи">Quick Tasks</h3>
+                <p id="feat1-desc" data-en="Complete tasks in minutes" data-uk="Виконайте завдання за хвилини" data-ru="Выполните задачи за минуты">Complete tasks in minutes</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💵</div>
+                <h3 id="feat2" data-en="Instant Rewards" data-uk="Миттєві винагороди" data-ru="Мгновенные награды">Instant Rewards</h3>
+                <p id="feat2-desc" data-en="Get paid instantly" data-uk="Отримайте оплату миттєво" data-ru="Получите зарплату мгновенно">Get paid instantly</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h3 id="feat3" data-en="Bonuses" data-uk="Бонуси" data-ru="Бонусы">Bonuses</h3>
+                <p id="feat3-desc" data-en="Earn extra with referrals" data-uk="Заробляйте більше за рефералами" data-ru="Заработайте больше с рефералами">Earn extra with referrals</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 id="feat4" data-en="Mobile Friendly" data-uk="Мобільна версія" data-ru="Мобильная версия">Mobile Friendly</h3>
+                <p id="feat4-desc" data-en="Works on all devices" data-uk="Працює на всіх пристроях" data-ru="Работает на всех устройствах">Works on all devices</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <p>&copy; 2026 Earning App. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
