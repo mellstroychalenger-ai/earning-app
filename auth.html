@@ -1,0 +1,81 @@
+<!-- auth.html - ФОРМИ РЕЄСТРАЦІЇ ТА ВХОДУ
+     Функціонал: реєстрація нового користувача, вхід в систему, валідація -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register - Earning App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- НАВІГАЦІЙНА ПАНЕЛЬ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">💰 Earning App</a>
+            <div class="nav-right">
+                <select id="languageSelect" class="language-select">
+                    <option value="uk">🇺🇦 Українська</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ОСНОВНИЙ КОНТЕНТ -->
+    <main class="auth-container">
+        <div class="auth-box">
+            <!-- ВКЛАДКА ВХОДУ -->
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="login" data-en="Login" data-uk="Вхід" data-ru="Вход">Login</button>
+                <button class="tab-btn" data-tab="register" data-en="Register" data-uk="Реєстрація" data-ru="Регистрация">Register</button>
+            </div>
+
+            <!-- ФОРМА ВХОДУ -->
+            <form id="loginForm" class="auth-form active-form">
+                <div class="form-group">
+                    <label id="loginUserLabel" data-en="Username" data-uk="Ім'я користувача" data-ru="Имя пользователя">Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-group">
+                    <label id="loginPassLabel" data-en="Password" data-uk="Пароль" data-ru="Пароль">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="btn btn-large" data-en="Login" data-uk="Увійти" data-ru="Войти">Login</button>
+                <p id="loginError" class="error-message"></p>
+            </form>
+
+            <!-- ФОРМА РЕЄСТРАЦІЇ -->
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label id="regUserLabel" data-en="Username" data-uk="Ім'я користувача" data-ru="Имя пользователя">Username</label>
+                    <input type="text" id="registerUsername" placeholder="Choose username" required>
+                </div>
+
+                <div class="form-group">
+                    <label id="regEmailLabel" data-en="Email" data-uk="Email" data-ru="Email">Email</label>
+                    <input type="email" id="registerEmail" placeholder="Enter email" required>
+                </div>
+
+                <div class="form-group">
+                    <label id="regPassLabel" data-en="Password" data-uk="Пароль" data-ru="Пароль">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create password" required>
+                </div>
+
+                <button type="submit" class="btn btn-large" data-en="Register" data-uk="Зареєструватися" data-ru="Зарегистрироваться">Register</button>
+                <p id="registerError" class="error-message"></p>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Earning App. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
