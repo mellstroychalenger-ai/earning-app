@@ -1,0 +1,689 @@
+/* styles.css - ГЛОБАЛЬНІ СТИЛІ ДЛЯ ВСІЄЇ ПЛАТФОРМИ
+   Містить: колірну схему, адаптивний дизайн, анімації,響應式верстку */
+
+/* ===== ЗМІННІ КОЛЬОРІВ ===== */
+:root {
+    --primary: #4a90e2;
+    --secondary: #50c878;
+    --accent: #ff6b6b;
+    --warning: #ffa500;
+    --light-bg: #f5f7fa;
+    --dark-text: #2c3e50;
+    --border: #e0e6ed;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== БАЗОВІ СТИЛІ ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* ===== НАВІГАЦІЙНА ПАНЕЛЬ ===== */
+.navbar {
+    background-color: white;
+    box-shadow: var(--shadow);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark-text);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+.nav-right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.language-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* ===== КНОПКИ ===== */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3a7bc8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.btn-large {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #45b76e;
+    transform: translateY(-2px);
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-light {
+    background-color: white;
+    color: var(--dark-text);
+    border: 2px solid white;
+}
+
+.btn-light:hover {
+    background-color: transparent;
+    color: white;
+}
+
+/* ===== ГЕРОЇЧНА СЕКЦІЯ (ГОЛОВНА СТОРІНКА) ===== */
+.hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: slideDown 0.6s ease;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    animation: slideDown 0.8s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== СЕКЦІЯ ОСОБЛИВОСТЕЙ ===== */
+.features {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 2rem;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+/* ===== ФОРМИ АУТЕНТИФІКАЦІЇ ===== */
+.auth-container {
+    max-width: 450px;
+    margin: 3rem auto;
+    padding: 2rem;
+}
+
+.auth-box {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border);
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 1rem;
+    color: var(--dark-text);
+    cursor: pointer;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active-form {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+/* ===== ПАНЕЛЬ КОРИСТУВАЧА ===== */
+.dashboard-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.2);
+}
+
+.balance-info h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.warning-box {
+    background-color: #fff3cd;
+    border-left: 4px solid var(--warning);
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+    color: #856404;
+}
+
+.status-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.tasks-history {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.history-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-reward {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+/* ===== СТОРІНКА ЗАВДАНЬ ===== */
+.tasks-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.task-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary);
+}
+
+.task-badge {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.task-card h3 {
+    margin-bottom: 1rem;
+    color: var(--dark-text);
+}
+
+.task-details {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.task-details p {
+    color: #666;
+}
+
+.task-reward {
+    color: var(--secondary);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* ===== СТОРІНКА РЕФЕРАЛІВ ===== */
+.referrals-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.referral-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+.referral-link-box {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.referral-link-box input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+.success-message {
+    color: var(--secondary);
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.bonus-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-card h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.stat-card p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary);
+}
+
+.motivation-box {
+    background: linear-gradient(135deg, #fffacd 0%, #ffe4b5 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--warning);
+}
+
+.motivation-box ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.motivation-box li {
+    padding: 0.5rem 0;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.motivation-box li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-weight: bold;
+}
+
+/* ===== СТОРІНКА АКЦІЙ ===== */
+.promotions-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.carousel {
+    position: relative;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.carousel-item.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.promo-banner {
+    padding: 3rem;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+}
+
+.banner-blue {
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+}
+
+.banner-green {
+    background: linear-gradient(135deg, #50c878 0%, #3aa85a 100%);
+}
+
+.banner-orange {
+    background: linear-gradient(135deg, #ffa500 0%, #ff8c00 100%);
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-prev { left: 1rem; }
+.carousel-next { right: 1rem; }
+
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.offer-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    position: relative;
+    transition: all 0.3s;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.offer-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: var(--accent);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* ===== ПОМИЛКИ ТА ПОВІДОМЛЕННЯ ===== */
+.error-message {
+    color: var(--accent);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* ===== ФУТЕР ===== */
+.footer {
+    background-color: var(--dark-text);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+/* ===== АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ ===== */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 1rem;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .balance-card {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .features-grid,
+    .tasks-grid,
+    .offers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .referral-link-box {
+        flex-direction: column;
+    }
+
+    .bonus-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero {
+        padding: 3rem 1rem;
+    }
+}
